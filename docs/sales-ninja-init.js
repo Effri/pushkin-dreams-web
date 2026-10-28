@@ -1,7 +1,8 @@
 (() => {
-  function start() {
+  async function start() {
     try {
-      if (!['pushkin.show', 'www.pushkin.show'].includes(window.location.hostname)) return;
+      const { MARKETING_DOMAINS } = await import('./marketing-domains.js');
+      if (!MARKETING_DOMAINS.includes(window.location.hostname)) return;
       if (localStorage.getItem('cookieConsent') !== 'accepted' && localStorage.getItem('cookieConsentAccepted') !== 'true') return;
     } catch { return; }
     if (window.__pushkinSalesNinjaStarted) return;
